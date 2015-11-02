@@ -29,6 +29,7 @@ Shortcuts for navigating slides are listed below
 |---------------------------| ----------------------------------------------|
 | Next slide                | Right Arrow, Down Arrow, Space bar or Return  |
 | Previous slide            | Left Arrow, Up Arrow or Backspace             |
+| Enter presentation mode   | f (as in fullscreen)                          |
 | Quit presentation mode    | Period                                        |
 
 
