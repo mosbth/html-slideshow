@@ -1,0 +1,73 @@
+<!doctype html>
+<meta charset="utf-8" />
+<title>mithril-slides</title>
+
+<!-- Mithril HTML Slideshow styles -->
+<link href="css/mithril-slideshow.css" rel="stylesheet" />
+<link href="css/theme-dark.css" rel="alternate stylesheet" title="Dark"/>
+<link href="css/theme-light.css" rel="alternate stylesheet" title="Light" />
+
+<!-- Code formatting using highlight.js -->
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/tomorrow.css">
+<script src="js/highlight.pack.js"></script>
+
+
+
+<!-- Here comes the slides in order -->
+<script data-role="slide" type="text/html">
+<pre data-code="code1"></pre>
+</script>
+
+
+<script id="code1" data-role="code" data-language="php" type="text/html">
+<?php
+// Include the essential config-file which also creates the $anax variable with its defaults.
+include(__DIR__.'/config.php'); 
+
+// Do it and store it all in variables in the Anax container.
+$anax['title'] = "Hello World";
+
+$anax['header'] = <<<EOD
+<img class='sitelogo' src='img/anax.png' alt='Anax Logo'/>
+<span class='sitetitle'>Anax webbtemplate</span>
+<span class='siteslogan'>Återanvändbara moduler för webbutveckling med PHP</span>
+EOD;
+
+$anax['main'] = <<<EOD
+<h1>Hej Världen</h1>
+<p>Detta är en exempelsida som visar hur Anax ser ut och fungerar.</p>
+EOD;
+
+$anax['footer'] = <<<EOD
+<footer><span class='sitefooter'>Copyright (c) Mikael Roos (me@mikaelroos.se) | <a href='https://github.com/mosbth/Anax-base'>Anax på GitHub</a> | <a href='http://validator.w3.org/unicorn/check?ucn_uri=referer&amp;ucn_task=conformance'>Unicorn</a></span></footer>
+EOD;
+
+// Finally, leave it all to the rendering phase of Anax.
+include(ANAX_THEME_PATH);
+</script>
+
+
+
+<script data-role="slide" type="text/html">
+<pre data-code="code2"></pre>
+</script>
+
+
+
+<script id="code2" data-role="code" data-language="" type="text/html">
+$ git clone https://github.com/mosbth/Anax-base.git
+$ cd Anax-base
+$ ls 
+LICENSE.txt  README.md  src/  theme/  webroot/ 
+$ firefox http://localhost/git/Anax-base/hello.php
+</script>
+
+
+
+
+
+
+<!-- include essential js-script -->
+<script src="js/mithril.min.js"></script>
+<script src="js/mithril-slideshow.js"></script>

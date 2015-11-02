@@ -3,12 +3,36 @@
  *
  */
 
+// Prepare all code blocks
+var codeElements = document.querySelectorAll('[data-role="code"]');
+
+for (var item of codeElements) {
+    var language = item.dataset.language
+    hljs.configure({
+        languages: [language]
+    });
+    hljs.highlightBlock(item);
+}
+
+
+ 
 // namespace
 var app = {};
+
+
 
 // config
 app.config = function(ctrl) {
     return function(element, isInitialized) {
+
+        // Get and format code elements
+        var codeElements = document.querySelectorAll('[data-code]');
+
+        for (var item of codeElements) {
+            var code = document.getElementById(item.dataset.code);
+            item.innerHTML = code.innerHTML.substr(1);
+        }
+
         if (!isInitialized) {
             function navigate(event) {
                 switch (event.keyCode) {
@@ -23,6 +47,15 @@ app.config = function(ctrl) {
                     case 37:   //ArrowLeft
                     case 38:   //ArrowUp
                         play(true);
+                    break;
+                    case 70:  //f
+                        if (element.webkitRequestFullScreen &&  !document.webkitFullscreenElement) {
+                            element.webkitRequestFullScreen();
+                        } else if (element.mozRequestFullScreen && !document.mozFullScreenElement) {
+                            element.mozRequestFullScreen();
+                        } else if (element.msRequestFullscreen && !document.msFullscreenElement) {
+                            element.msRequestFullscreen();
+                        }
                     break;
                     case 190:  //Period
                         if (document.webkitExitFullscreen) {
@@ -40,17 +73,9 @@ app.config = function(ctrl) {
             };
 
             function play(reverse) {
-                if (element.webkitRequestFullScreen &&  !document.webkitFullscreenElement) {
-                    element.webkitRequestFullScreen();
-                } else if (element.mozRequestFullScreen && !document.mozFullScreenElement) {
-                    element.mozRequestFullScreen();
-                } else if (element.msRequestFullscreen && !document.msFullscreenElement) {
-                    element.msRequestFullscreen();
-                } else {
-                    m.startComputation();
-                    ctrl.rotateSlide(reverse);
-                    m.endComputation();
-                };
+                m.startComputation();
+                ctrl.rotateSlide(reverse);
+                m.endComputation();
             };
 
             window.onclick       = navigate;
@@ -94,6 +119,9 @@ app.view = function(ctrl) {
         m("div#objects", m.trust(slide.innerHTML))
     ]);
 };
+
+
+
 
 //initialize
 document.body = document.createElement("body");

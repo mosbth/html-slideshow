@@ -3,7 +3,7 @@ Mithril HTML Slideshow
 
 I wanted a simple way to create a slideshow using pure HTML and I found the nice implementation of [mithril-slides](https://github.com/wulab/mithril-slides) which uses a JSON-configfile to create the slides.
 
-I took mithril-slides and enabled to write each slide inside a `<script>` element to make it easier to write custom HTML for the slides. I also made it standalone to make it work without a local webserver.
+I took mithril-slides and enabled to write each slide inside a `<script>` element to make it easier to write custom HTML for the slides. I also made it standalone to make it work without a local webserver. Any other features are explained below.
 
 But, apart from my minor changes, the "kernel" and idea has its origin in Weera Wu's mithril-slides.
 
@@ -73,6 +73,32 @@ You can create your own theme by adding your own stylesheet. Here is the default
 <link href="css/theme-dark.css" rel="alternate stylesheet" title="Dark"/>
 <link href="css/theme-light.css" rel="alternate stylesheet" title="Light" />
 ```
+
+
+
+How to add syntax highlighting on sourceode
+----------------------------
+
+Syntax highlightning is enabled by default by using [`highlight.js`](https://highlightjs.org/). But you need to separate the code from the slide since creating a slide with sourcecode is a two step rocket.
+
+First create the slide with a placeholder for the code.
+
+```html
+<script data-role="slide" type="text/html">
+<pre data-code="hello"></pre>
+</script>
+```
+
+Then create a script element holding the code.
+
+```html
+<script id="hello" data-role="code" data-language="php" type="text/html">
+<?php
+echo "Hello World";
+</script>
+```
+
+Done. When the slide is created, it will take the code matching `data-code="hello"` with `id="hello"` and run it through the syntax higligther.
 
 
 

@@ -1,5 +1,5 @@
 html {
-    cursor: none;
+    /*cursor: none;*/
 }
 
 body {
@@ -9,13 +9,19 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -moz-font-feature-settings: 'liga', 'kern';
+    /*
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
+    */
 }
 
 h1, h2, h3 {
     text-align: center; font-weight: 100;
+}
+
+.left {
+    text-align: left;
 }
 
 h1, h2, h3, img {
@@ -48,6 +54,15 @@ pre {
     font-size: 24pt;
     text-align: left;
     line-height: 1.4;
+
+    background-color: #111;
+    padding: 0.5em;
+    overflow: auto;
+    max-height: 768px;
+}
+
+a {
+    color: #fff;
 }
 
 #slide {
@@ -88,3 +103,10 @@ pre {
 #objects > :last-child {
     margin-bottom: 0;
 }
+
+/* Custom */
+/*
+#objects p {
+    max-width: 980px;
+    text-align: center;
+}*/
