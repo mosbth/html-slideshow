@@ -123,6 +123,14 @@ Check `slideshow-markdown.html` for examples.
 
 
 
+Other HTML slideshow projects
+----------------------------
+
+* [mithril-slides](https://github.com/wulab/mithril-slides)
+* [HTML Presentation Framework reveal.js](https://github.com/hakimel/reveal.js/)
+
+
+
 ```                                                            
  .                                                             
 ..:  Copyright (c) 2015 Mikael Roos, me@mikaelroos.se   
