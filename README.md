@@ -101,6 +101,26 @@ echo "Hello World";
 
 Done. When the slide is created, it will take the code matching `data-code="hello"` with `id="hello"` and run it through the syntax higligther.
 
+Check `slideshow-code.html` for examples.
+
+
+
+Use Markdown to write slides
+----------------------------
+
+You can write the slides using Markdown. This is enabled by default using [`showdown.js`](https://github.com/showdownjs/showdown). You create a markdown slide using data attribute `data-markdown` like this.
+
+```html
+<script data-role="slide" data-markdown type="text/html">
+#header 1
+##header 2
+
+paragraf 1
+</script>
+```
+
+Check `slideshow-markdown.html` for examples.
+
 
 
 ```                                                            
