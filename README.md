@@ -1,6 +1,8 @@
 Mithril HTML Slideshow
 ============================
 
+[![Build Status](https://travis-ci.org/mosbth/mithril-slideshow.svg?branch=master)](https://travis-ci.org/mosbth/mithril-slideshow)
+
 I wanted a simple way to create a slideshow using pure HTML and I found the nice implementation of [mithril-slides](https://github.com/wulab/mithril-slides) which uses a JSON-configfile to create the slides.
 
 I took mithril-slides and enabled to write each slide inside a `<script>` element to make it easier to write custom HTML for the slides. I also made it standalone to make it work without a local webserver. Any other features are explained below.
@@ -133,5 +135,5 @@ Other HTML slideshow projects
 
 ```                                                            
  .                                                             
-..:  Copyright (c) 2015 Mikael Roos, me@mikaelroos.se   
+..:  Copyright (c) 2015 - 2016 Mikael Roos, me@mikaelroos.se   
 ```                                                            
