@@ -3,6 +3,9 @@
  *
  */
 
+ /* globals hljs, showdown, m */
+
+
  /**
   * Namespace
   */
@@ -66,6 +69,8 @@ app.initMarkdown = function() {
  * Enter fullscreen.
  */
 app.enterFullscreen = function(element) {
+    element = document.body;
+
     if (element.webkitRequestFullScreen &&  !document.webkitFullscreenElement) {
         element.webkitRequestFullScreen();
     } else if (element.mozRequestFullScreen && !document.mozFullScreenElement) {
@@ -93,51 +98,95 @@ app.exitFullscreen = function() {
 
 
 /**
+ * Display next or previous slide.
+ */
+app.play = function(controller, reverse) {
+    m.startComputation();
+    controller.rotateSlide(reverse);
+    m.endComputation();
+};
+
+
+
+/**
+ * Display next or previous slide.
+ */
+app.useTheme = function(theme) {
+    var element = document.getElementsByTagName("html").item(0);
+
+    console.log(element);
+
+    element.classList.remove("theme-1", "theme-2", "theme-3", "theme-4", "theme-5");
+    element.classList.add("theme-" + theme);
+};
+
+
+
+/**
+ * Navigate.
+ */
+var cp = {};
+
+cp.navigate = function(controller, event) {
+
+    console.log(event.keyCode);
+
+    switch (event.keyCode) {
+        case 0:    //ContextMenu
+        case 13:   //Enter
+        case 32:   //Space
+        case 39:   //ArrowRight
+        case 40:   //ArrowDown
+            app.play(controller);
+        break;
+        case 8:    //Backspace
+        case 37:   //ArrowLeft
+        case 38:   //ArrowUp
+            app.play(controller, true);
+        break;
+        case 70:  //f
+            app.enterFullscreen();
+        break;
+        case 190:  //Period
+            app.exitFullscreen();
+        break;
+
+        case 49: // 1 Theme 1
+        case 50: // 2 Theme 2
+        case 51: // 3 Theme 3
+        case 52: // 4 Theme 4
+        case 53: // 5 Theme 5
+            app.useTheme(event.keyCode - 48);
+        break;
+
+        default:
+            return;
+        }
+
+    return false;
+};
+
+
+
+/**
  * Config
  */
-app.config = function(ctrl) {
+app.config = function(controller) {
     return function(element, isInitialized) {
 
         app.loadCodeBlocksIntoSlide();
 
         if (!isInitialized) {
-            function navigate(event) {
-                switch (event.keyCode) {
-                    case 0:    //ContextMenu
-                    case 13:   //Enter
-                    case 32:   //Space
-                    case 39:   //ArrowRight
-                    case 40:   //ArrowDown
-                        play();
-                    break;
-                    case 8:    //Backspace
-                    case 37:   //ArrowLeft
-                    case 38:   //ArrowUp
-                        play(true);
-                    break;
-                    case 70:  //f
-                        app.enterFullscreen(element);
-                    break;
-                    case 190:  //Period
-                        app.exitFullscreen();
-                    break;
-                    default:
-                        return;
-                    };
-                return false;
-            };
 
-            function play(reverse) {
-                m.startComputation();
-                ctrl.rotateSlide(reverse);
-                m.endComputation();
+            var navigate = function(event) {
+                    cp.navigate(controller, event);
             };
 
             window.onclick       = navigate;
             window.onkeydown     = navigate;
             window.ontouchend    = navigate;
-            window.oncontextmenu = function() { return false };
-        };
+            //window.oncontextmenu = function() { return false };
+        }
     };
 };
 
@@ -160,14 +209,16 @@ app.controller = function() {
     var current = 0;
 
     return {
+
         currentSlide: function() {
             return slides.item(current);
         },
+
         rotateSlide: function(reverse) {
             if (reverse) {
-                current = (current == 0) ? slides.length - 1 : current - 1;
+                current = (current === 0) ? slides.length - 1 : current - 1;
             } else {
-                current = (current == slides.length - 1) ? 0 : current + 1;
+                current = (current === slides.length - 1) ? 0 : current + 1;
             }
         }
     };
@@ -178,11 +229,17 @@ app.controller = function() {
 /**
  * View
  */
-app.view = function(ctrl) {
-    var slide = ctrl.currentSlide();
-    return m("div#slide", { config: app.config(ctrl) }, [
-        m("div#objects", m.trust(slide.innerHTML))
-    ]);
+app.view = function(controller) {
+    var slide = controller.currentSlide();
+    return m(
+        "div#slide",
+        {
+            config: app.config(controller)
+        },
+        [
+            m("div#objects", m.trust(slide.innerHTML))
+        ]
+    );
 };
 
 

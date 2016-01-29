@@ -30,6 +30,7 @@ Shortcuts for navigating slides are listed below
 | Next slide                | Right Arrow, Down Arrow, Space bar or Return  |
 | Previous slide            | Left Arrow, Up Arrow or Backspace             |
 | Enter presentation mode   | f (as in fullscreen)                          |
+| 1, 2, 3, 4, 5             | Change theme                                  |
 | Quit presentation mode    | Period                                        |
 
 
@@ -65,14 +66,13 @@ Create the slides with pure HTML and wrap them in a `<script>` element. Like the
 How to change the theme
 ----------------------------
 
-The theme is set up from the stylesheet and combining with alternate stylesheets, or by editing the source. The sample `slideshow.html` has support for the original, dark and light theme. You can change the theme using your browser (Firefox) menu if you have a browser supporting alternate stylesheet.
+There are three default themes. You can switch between the themes using keys 1 to 5.
 
-You can create your own theme by adding your own stylesheet. Here is the default setup.
+You can edit the stylesheet `css/mithril-slideshow.less` to customize your own theme.
 
-```html
-<link href="css/mithril-slideshow.css" rel="stylesheet" />
-<link href="css/theme-dark.css" rel="alternate stylesheet" title="Dark"/>
-<link href="css/theme-light.css" rel="alternate stylesheet" title="Light" />
+Use `make` to generate CSS from the LESS code.
+```
+$ make build
 ```
 
 
