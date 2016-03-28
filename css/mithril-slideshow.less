@@ -17,12 +17,8 @@ body {
 h1,
 h2,
 h3 {
-    text-align: center;
-    font-weight: 100;
-}
-
-.left {
     text-align: left;
+    font-weight: 100;
 }
 
 h1,
@@ -54,6 +50,10 @@ li {
     margin-bottom: 42pt;
 }
 
+p {
+    text-align: left;
+}
+
 pre {
     font-size: 24pt;
     text-align: left;
@@ -75,8 +75,6 @@ a {
     -webkit-transform: translate(0, -50%);
     -moz-transform: translate(0, -50%);
     -ms-transform: translate(0, -50%);
-
-    text-align: center;
 }
 
 #objects > :first-child {
@@ -85,6 +83,24 @@ a {
 
 #objects > :last-child {
     margin-bottom: 0;
+}
+
+
+
+/**
+ * Default slide style
+ */
+.slide-a {
+
+}
+
+.slide-b {
+    h1,
+    h2,
+    h3,
+    p {
+        text-align: center;
+    }
 }
 
 

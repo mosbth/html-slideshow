@@ -1,8 +1,10 @@
 Revision history
 ============================
 
-v1.0* (2016-01-29)
+v1.0* (2016-03-28)
 
+* Enable to add class to each slide.
+* Add themes.
 * Rewrite js-code to pass jshint.
 * Move css to less.
 * Add makefile to test and minify less and js-files.

@@ -109,7 +109,7 @@ app.play = function(controller, reverse) {
 
 
 /**
- * Display next or previous slide.
+ * CHnge theme.
  */
 app.useTheme = function(theme) {
     var element = document.getElementsByTagName("html").item(0);
@@ -237,7 +237,12 @@ app.view = function(controller) {
             config: app.config(controller)
         },
         [
-            m("div#objects", m.trust(slide.innerHTML))
+            m("div#objects",
+                {
+                    class: slide.classList.toString()
+                },
+                m.trust(slide.innerHTML)
+            )
         ]
     );
 };

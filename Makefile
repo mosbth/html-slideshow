@@ -138,8 +138,11 @@ jshint: $(JS_FILES)
 #
 # HTML
 #
+.PHONY:	html-lint
 
 # target: html-lint - Lint HTML files
-html-lint: $(HTML_FILES)
-	@echo '==> HTML linting'
-	$(HTML_LINT) $(HTML_LINT_OPTIONS) $(HTML_FILES)
+html-lint:
+	@for file in $(HTML_FILES); do \
+		echo -n "==> HTML linting $$file"; \
+		$(HTML_LINT) $(HTML_LINT_OPTIONS) $@ | grep -v "Config loaded: "; \
+	done

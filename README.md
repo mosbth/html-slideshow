@@ -79,10 +79,26 @@ $ make build
 
 
 
-How to add syntax highlighting on sourceode
+How to change style for individual slides
 ----------------------------
 
-Syntax highlightning is enabled by default by using [`highlight.js`](https://highlightjs.org/). But you need to separate the code from the slide since creating a slide with sourcecode is a two step rocket.
+You can add a class to each slide, like `class="slide-b"` below.
+
+```html
+<script data-role="slide" class="slide-b" type="text/html">
+<h1>Lorem Ipsum Dolor</h1>
+<p>Duis aute irure</p>
+</script>
+```
+
+This makes it possible to individually style each slide.
+
+
+
+How to add syntax highlighting on source code
+----------------------------
+
+Syntax highlighting is enabled by default by using [`highlight.js`](https://highlightjs.org/). But you need to separate the code from the slide since creating a slide with source code is a two step rocket.
 
 First create the slide with a placeholder for the code.
 
