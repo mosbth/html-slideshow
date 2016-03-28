@@ -71,9 +71,13 @@ a {
  * Default slide style
  */
 .slide-b h1,
+.center h1,
 .slide-b h2,
+.center h2,
 .slide-b h3,
-.slide-b p {
+.center h3,
+.slide-b p,
+.center p {
   text-align: center;
 }
 /**
