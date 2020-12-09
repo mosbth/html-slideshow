@@ -1,44 +1,107 @@
+#!/usr/bin/env make
 #
-# The fileset
+# Makefile to work with the repo.
+# Build like this:
+# - make install
+# - make test
+# - make build
+
+# ------------------------------------------------------------------------
 #
-JS_FILES 	= js/mithril-slideshow.js
-JS_MINIFIED = $(JS_FILES:.js=.min.js)
-
-LESS_FILES 		= css/mithril-slideshow.less
-LESS_COMPILED 	= $(LESS_FILES:.less=.css)
-LESS_MINIFIED 	= $(LESS_FILES:.less=.min.css)
-
-HTML_FILES	= $(wildcard *.html)
-
-
-
+# General stuff, reusable for all Makefiles.
 #
-# Tool to compile and minify less code
+
+# Detect OS
+OS = $(shell uname -s)
+
+# Defaults
+ECHO = echo
+
+# Make adjustments based on OS
+ifneq (, $(findstring CYGWIN, $(OS)))
+	OS_CYGWIN = "true"
+	ECHO = /bin/echo -e
+else ifneq (, $(findstring Linux, $(OS)))
+	OS_LINUX = "true"
+else ifneq (, $(findstring Darwin, $(OS)))
+	OS_MAC = "true"
+endif
+
+# Colors and helptext
+NO_COLOR	= \033[0m
+ACTION		= \033[32;01m
+OK_COLOR	= \033[32;01m
+ERROR_COLOR	= \033[31;01m
+WARN_COLOR	= \033[33;01m
+
+# Print out colored action message
+ACTION_MESSAGE = $(ECHO) "$(ACTION)---> $(1)$(NO_COLOR)"
+
+# Which makefile am I in?
+WHERE-AM-I = "$(CURDIR)/$(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))"
+THIS_MAKEFILE := $(call WHERE-AM-I)
+
+# Echo some nice helptext based on the target comment
+HELPTEXT = $(call ACTION_MESSAGE, $(shell egrep "^\# target: $(1) " $(THIS_MAKEFILE) | sed "s/\# target: $(1)[ ]*-[ ]* / /g"))
+
+# Check version  and path to command and display on one line
+CHECK_VERSION = printf "%-10s %-20s %s\n" "`basename $(1)`" "`which $(1)`" "`$(1) --version $(2)`"
+
+# Get current working directory, it may not exist as environment variable.
+PWD = $(shell pwd)
+
+# target: help                    - Displays help.
+.PHONY:  help
+help:
+	@$(call HELPTEXT,$@)
+	@sed '/^$$/q' $(THIS_MAKEFILE) | tail +3 | sed 's/#\s*//g'
+	@$(ECHO) "Usage:"
+	@$(ECHO) " make [target] ..."
+	@$(ECHO) "target:"
+	@egrep "^# target:" $(THIS_MAKEFILE) | sed 's/# target: / /g'
+
+
+
+# ------------------------------------------------------------------------
 #
-LESS_COMPILE			= lessc
-LESS_COMPILE_OPTIONS 	= 
-
-LESS_MINIFY				= $(LESS_COMPILE)
-LESS_MINIFY_OPTIONS 	= --clean-css
-
-LESS_LINT				= $(LESS_COMPILE)
-LESS_LINT_OPTIONS 		= --lint
-
-
-
+# Specifics for this project.
 #
-# Tool to minimize javascript code
-#
-JS_MINIFY 			= uglifyjs
-JS_MINIFY_OPTIONS 	= --mangle --compress --screw-ie8 --comments
 
+# Path to source and build libs
+BUILD   = build
+HTDOCS  = htdocs
+SRC     = src
 
+# LESS files and their built respectives.
+LESSC			= npx lessc
+CSSMINI			= npx clean-css-cli
+BUILD_LESS 		=  $(BUILD)/less
+SRC_LESS 		=  $(SRC)/less
+LESS_SOURCES    = $(wildcard $(SRC_LESS)/*.less)
+LESS_CSS        = $(LESS_SOURCES:$(SRC)/less/%.less=$(BUILD_LESS)/css/%.css)
+LESS_MIN_CSS    = $(LESS_SOURCES:$(SRC)/less/%.less=$(BUILD_LESS)/css/%.min.css)
 
-#
-# Tool to lint HTML code
-#
-HTML_LINT 			= htmlhint
-HTML_LINT_OPTIONS 	= 
+# JS files and their built respectives.
+JS_LINTER	= npx eslint
+JS_MINIFIER	= npx uglify-es
+BUILD_JS 	=  $(BUILD)/js
+SRC_JS	 	=  $(SRC)/js
+JS_SOURCES	= $(wildcard $(SRC_JS)/*.js)
+JS_SRC_MIN  = $(JS_SOURCES:$(SRC_JS)/%.js=$(BUILD_JS)/%.min.js)
+
+# HTML files
+HTML_LINT 		= npx htmlhint
+HTML_SOURCES	= $(SRC) $(HTDOCS)
+#HTML_SOURCES	= $(wildcard $(SRC)/*.html $(HTDOCS)/*.html)
+
+# JS lib files to include in bundle
+JS_TARGET			= slideshow-bundle.min.js
+JS_TARGET_SOURCES 	= $(wildcard $(SRC_JS)/lib/*.js) $(JS_SRC_MIN)
+
+# CSS lib files to include in bundle
+CSS_TARGET			= slideshow-bundle.min.css
+CSS_TARGET_SOURCES 	= $(wildcard $(SRC)/css/lib/*.css) $(LESS_MIN_CSS)
+
 
 
 
@@ -47,90 +110,142 @@ HTML_LINT_OPTIONS 	=
 # General and combined targets
 #
 
-# target: all - Default target, run tests and build
-all: test build
-
-
-# target: test - Do all tests
-test: jscs jshint less-lint html-lint
+# target: all                     - Default target
+all: help
+	@$(call HELPTEXT,$@)
 
 
 
-# target: build - Do all build
-build: less-compile less-minify js-minify
+# target: install                 - Install what is needed
+install:
+	@$(call HELPTEXT,$@)
+	npm install
 
 
 
-# target: clean - Removes generated files and directories.
+# target: prepare                 - Prepare to build
+prepare:
+	@$(call HELPTEXT,$@)
+	@install -d $(BUILD_LESS)/css
+	@install -d $(BUILD_JS)
+
+
+
+# target: build                   - Build all target files
+build: less js bundle
+	@$(call HELPTEXT,$@)
+
+
+
+# target: test                    - Execute all tests and linters
+test: less-lint js-lint html-lint
+	@$(call HELPTEXT,$@)
+
+
+
+# target: clean                   - Removes generated build files.
 clean:
-	@echo "Target clean not implemented."
-	#rm -f $(CSS_MINIFIED) $(JS_MINIFIED)
+	@$(call HELPTEXT,$@)
+	rm -rf build
 
 
 
-# target: help - Displays help.
-help:
-	@echo "make [target] ..."
-	@echo "target:"
-	@egrep "^# target:" Makefile | sed 's/# target: / /g'
+# target: clean-all               - Removes installed utilities.
+clean-all: clean
+	@$(call HELPTEXT,$@)
+	rm -rf node_modules
 
 
 
-# ------------------------------------------------------------------------
-#
-# LESS
-#
-
-# target: less-compile - Compile LESS to CSS
-less-compile: $(LESS_FILES) $(LESS_COMPILED)
-
-%.css: %.less
-	@echo '==> LESS compiling $<'
-	$(LESS_COMPILE) $(LESS_COMPILE_OPTIONS) $< $@ 
-
-
-
-# target: less-minify - Minify LESS files to min.css
-less-minify: $(LESS_FILES) $(LESS_MINIFIED)
-
-%.min.css: %.less
-	@echo '==> LESS minifying $<'
-	$(LESS_MINIFY) $(LESS_MINIFY_OPTIONS) $< $@
-
-
-
-# target: less-lint - Lint LESS files
-less-lint: $(LESS_FILES)
-	@echo '==> LESS linting $<'
-	$(LESS_LINT) $(LESS_LINT_OPTIONS) $<
+# target: linter-fix              - Use linters to fix codestyle.
+linter-fix: linter-fix
+	@$(call HELPTEXT,$@)
+	$(JS_LINTER) $(JS_SOURCES) --fix
 
 
 
 # ------------------------------------------------------------------------
 #
-# JavaScript
+# Bundler.
 #
-
-# target: js-minify - Minify JavaScript files to min.js
-js-minify: $(JS_FILES) $(JS_MINIFIED)
-
-%.min.js: %.js
-	@echo '==> Minifying $<'
-	$(JS_MINIFY) $(JS_MINIFY_OPTIONS) --output $@  $<
+# target: bundle                  - Bundle all the files as a target.
+bundle: bundle-js bundle-css
+	@$(call HELPTEXT,$@)
+	rsync -a $(BUILD_LESS)/$(CSS_TARGET) $(HTDOCS)/css/$(CSS_TARGET)
+	rsync -a $(BUILD_JS)/$(JS_TARGET) $(HTDOCS)/js/$(JS_TARGET)
 
 
 
-# target: jscs - Check codestyle in javascript files
-jscs: $(JS_FILES)
-	@echo '==> Check JavaScript codestyle'
-	jscs $(JS_FILES)
+# target: bundle-css              - Bundle the CSS files as a target.
+bundle-css:
+	@$(call HELPTEXT,$@)
+	cat $(CSS_TARGET_SOURCES) > $(BUILD_LESS)/$(CSS_TARGET)
+	$(CSSMINI) $(BUILD_LESS)/$(CSS_TARGET) > /tmp/mini.css
+	mv /tmp/mini.css $(BUILD_LESS)/$(CSS_TARGET)
 
 
 
-# target: jshint - Lint javascript files
-jshint: $(JS_FILES)
-	@echo '==> Check JavaScript linter'
-	jshint $(JS_FILES)
+# target: bundle-js               - Bundle the JavaScript files as a target.
+bundle-js:
+	@$(call HELPTEXT,$@)
+	cat $(JS_TARGET_SOURCES) > $(BUILD_JS)/$(JS_TARGET)
+
+
+
+# ------------------------------------------------------------------------
+#
+# LESS.
+#
+# target: less                    - Compile the LESS stylesheet(s).
+less: prepare less-css less-min-css
+	@$(call HELPTEXT,$@)
+	rsync -a $(BUILD_LESS)/css/slideshow.min.css $(HTDOCS)/css
+
+less-css: $(LESS_CSS)
+less-min-css: $(LESS_MIN_CSS)
+
+$(BUILD_LESS)/css/%.css: $(SRC_LESS)/%.less
+	@$(call ACTION_MESSAGE,$< -> $@)
+	$(LESSC) --include-path=$(SRC_LESS) $< $@
+
+$(BUILD_LESS)/css/%.min.css: $(SRC_LESS)/%.less
+	@$(call ACTION_MESSAGE,$< -> $@)
+	$(LESSC) --include-path=$(SRC_LESS) --clean-css $< $@
+	$(CSSMINI) $@ > /tmp/mini.css
+	mv /tmp/mini.css $@
+
+# target: less-lint               - Lint the LESS stylesheet(s).
+less-lint: $(LESS_SOURCES)
+	@$(call HELPTEXT,$@)
+	@for file in $(LESS_SOURCES); do \
+		$(ECHO) " $$file"; \
+		$(LESSC) --include-path=$(SRC_LESS) --lint $$file; \
+	done
+
+
+
+# ------------------------------------------------------------------------
+#
+# JavaScript.
+#
+# target: js                      - Compile and minify JavaScript.
+js: prepare js-min
+	@$(call HELPTEXT,$@)
+	rsync -a $(BUILD_JS)/slideshow.min.js $(HTDOCS)/js
+
+# target: js-min                  - Minify JavaScript.
+js-min: $(JS_SRC_MIN)
+	@$(call HELPTEXT,$@)
+
+$(BUILD_JS)/%.min.js: $(SRC_JS)/%.js
+	@$(call ACTION_MESSAGE,$< -> $@)
+	$(JS_MINIFIER)  $< --output $@
+
+# target: js-lint                 - Lint JavaScript.
+js-lint: $(JS_SOURCES)
+	@$(call HELPTEXT,$@)
+	$(JS_LINTER) $(JS_SOURCES)
+
 
 
 
@@ -138,11 +253,7 @@ jshint: $(JS_FILES)
 #
 # HTML
 #
-.PHONY:	html-lint
-
-# target: html-lint - Lint HTML files
-html-lint:
-	@for file in $(HTML_FILES); do \
-		echo -n "==> HTML linting $$file"; \
-		$(HTML_LINT) $(HTML_LINT_OPTIONS) $@ | grep -v "Config loaded: "; \
-	done
+# target: html-lint               - Lint HTML files
+html-lint: $(HTML_SOURCES)
+	@$(call HELPTEXT,$@)
+	$(HTML_LINT) $(HTML_SOURCES)

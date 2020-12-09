@@ -1,21 +1,13 @@
 <!doctype html>
 <meta charset="utf-8" />
+
+<link href="css/slideshow-bundle.min.css" rel="stylesheet" />
+<script src="js/slideshow-bundle.min.js"></script>
+
 <title>mithril-slides</title>
 
-<!-- Mithril HTML Slideshow styles -->
-<link href="css/mithril-slideshow.css" rel="stylesheet" />
-
-<!-- Code formatting using highlight.js -->
-<link rel="stylesheet" href="css/default.css">
-<link rel="stylesheet" href="css/tomorrow.css">
-<script src="js/highlight.pack.js"></script>
-
-<!-- Text formatting using Markdown through showdown.js -->
-<script src="js/showdown.min.js"></script>
 
 
-
-<!-- Here comes the slides in order -->
 <script data-role="slide" type="text/html">
 <pre data-code="code1"></pre>
 </script>
@@ -24,7 +16,7 @@
 <script id="code1" data-role="code" data-language="php" type="text/html">
 <?php
 // Include the essential config-file which also creates the $anax variable with its defaults.
-include(__DIR__.'/config.php'); 
+include(__DIR__.'/config.php');
 
 // Do it and store it all in variables in the Anax container.
 $anax['title'] = "Hello World";
@@ -59,16 +51,7 @@ include(ANAX_THEME_PATH);
 <script id="code2" data-role="code" data-language="" type="text/html">
 $ git clone https://github.com/mosbth/Anax-base.git
 $ cd Anax-base
-$ ls 
-LICENSE.txt  README.md  src/  theme/  webroot/ 
+$ ls
+LICENSE.txt  README.md  src/  theme/  webroot/
 $ firefox http://localhost/git/Anax-base/hello.php
 </script>
-
-
-
-
-
-
-<!-- include essential js-script -->
-<script src="js/mithril.min.js"></script>
-<script src="js/mithril-slideshow.js"></script>

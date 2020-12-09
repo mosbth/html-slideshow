@@ -1,13 +1,31 @@
 Mithril HTML Slideshow
 ============================
 
+[![npm version](https://badge.fury.io/js/html-slideshow.svg)](https://badge.fury.io/js/html-slideshow)
 [![Build Status](https://travis-ci.org/mosbth/mithril-slideshow.svg?branch=master)](https://travis-ci.org/mosbth/mithril-slideshow)
 
-I wanted a simple way to create a slideshow using pure HTML and I found the nice implementation of [mithril-slides](https://github.com/wulab/mithril-slides) which uses a JSON-configfile to create the slides.
+This enables you to build slideshows using HTML and Markdown in a single HTML page.
 
-I took mithril-slides and enabled to write each slide inside a `<script>` element to make it easier to write custom HTML for the slides. I also made it standalone to make it work without a local webserver. Any other features are explained below.
+You write all your slides in one html-file. Each slide is written in its own `<script>` tag.
 
-But, apart from my minor changes, the "kernel" and idea has its origin in Weera Wu's mithril-slides.
+Here is how a markdown slide can be created.
+
+```
+<script data-role="slide" data-markdown type="text/html">
+# Here is a bullet list
+
+* bullet
+* bullet
+* another bullet
+
+</script>
+```
+
+When you open the html file in a browser, each `<script>` tag is rendered to be a slide.
+
+It can look like this.
+
+!(Slide with a bullet list)[img/slide-bullet-list.png]
 
 
 
@@ -144,12 +162,25 @@ Check `slideshow-markdown.html` for examples.
 Other HTML slideshow projects
 ----------------------------
 
+There are other projects looking like this.
+
 * [mithril-slides](https://github.com/wulab/mithril-slides)
 * [HTML Presentation Framework reveal.js](https://github.com/hakimel/reveal.js/)
 
 
 
+History
+----------------------------
+
+I wanted a simple way to create a slideshow using pure HTML and I found the nice implementation of [mithril-slides](https://github.com/wulab/mithril-slides) which uses a JSON-config file to create the slides.
+
+I took mithril-slides and enabled to write each slide inside a `<script>` element to make it easier to write custom HTML for the slides. I also made it standalone to make it work without a local webserver. Other additional features are explained in this README.
+
+Apart from my feature updates, the "kernel" and idea has its origin in Weera Wu's mithril-slides.
+
+
+
 ```                                                            
  .                                                             
-..:  Copyright (c) 2015 - 2016 Mikael Roos, me@mikaelroos.se   
+..:  Copyright (c) 2015 - 2020 Mikael Roos, me@mikaelroos.se   
 ```                                                            

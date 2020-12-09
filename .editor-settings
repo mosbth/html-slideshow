@@ -1,0 +1,9 @@
+extensionConfig:
+  js:
+    tabLength: 2
+  json:
+    tabLength: 2
+
+grammarConfig:
+  Makefile:
+    softTabs: false

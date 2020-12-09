@@ -1,0 +1,43 @@
+{
+  "name": "html-slideshow",
+  "version": "1.0.0",
+  "description": "Standalone HTML slideshow using JavaScript framework Mithril",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "make build",
+    "lint": "npx eslint src || exit 0",
+    "lint:fix": "npx eslint src --fix || exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mosbth/mithril-slideshow.git"
+  },
+  "keywords": [
+    "HTML",
+    "Markdown",
+    "slide",
+    "slideshow",
+    "mithril"
+  ],
+  "author": "Mikael Roos",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mosbth/mithril-slideshow/issues"
+  },
+  "homepage": "https://github.com/mosbth/mithril-slideshow#readme",
+  "devDependencies": {
+    "clean-css": "^4.2.3",
+    "clean-css-cli": "^4.3.0",
+    "eslint": "^7.15.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "htmlhint": "^0.14.2",
+    "lessc": "^1.0.2",
+    "standard": "^16.0.3",
+    "uglify-es": "^3.3.9",
+    "uglifyjs": "^2.4.11"
+  }
+}
