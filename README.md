@@ -25,18 +25,18 @@ When you open the html file in a browser, each `<script>` tag is rendered to be 
 
 It can look like this.
 
-!(Slide with a bullet list)[img/slide-bullet-list.png]
+![Slide with a bullet list](htdocs/img/slide-bullet-list.png)
 
 
 
-Getting started
+Try it out
 ----------------------------
 
-1. Open the file `slideshow.html` in your browser to see the sample slideshow.
+This repo contains some sample presentations, published onto GitHub pages, that you can review to get an understanding on how it works.
 
-2. To add or edit slides, make changes to the `slideshow.html` file and reload your browser.
-
-3. To make a new slideshow, copy `slideshow.html` to another file and edit it.
+| Presentation             | Explained                                     |
+|--------------------------|-----------------------------------------------|
+| [slideshow-markdown.html](https://mosbth.github.io/mithril-slideshow/htdocs/slideshow.html) | Slides created by writing markdown. |
 
 
 
@@ -52,6 +52,17 @@ Shortcuts for navigating slides are listed below
 | Enter presentation mode   | f (as in fullscreen)                          |
 | 1, 2, 3, 4, 5             | Change theme                                  |
 | Quit presentation mode    | Period                                        |
+
+
+
+Getting started
+----------------------------
+
+1. Open the file `slideshow.html` in your browser to see the sample slideshow.
+
+2. To add or edit slides, make changes to the `slideshow.html` file and reload your browser.
+
+3. To make a new slideshow, copy `slideshow.html` to another file and edit it.
 
 
 
@@ -156,6 +167,15 @@ paragraf 1
 ```
 
 Check `slideshow-markdown.html` for examples.
+
+
+
+Libraries used
+----------------------------
+
+These are the libraries used and bundled.
+
+
 
 
 
