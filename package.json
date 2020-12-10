@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mosbth/mithril-slideshow.git"
+    "url": "git+https://github.com/mosbth/html-slideshow.git"
   },
   "keywords": [
     "HTML",
@@ -23,9 +23,9 @@
   "author": "Mikael Roos",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mosbth/mithril-slideshow/issues"
+    "url": "https://github.com/mosbth/html-slideshow/issues"
   },
-  "homepage": "https://github.com/mosbth/mithril-slideshow#readme",
+  "homepage": "https://github.com/mosbth/html-slideshow#readme",
   "devDependencies": {
     "clean-css": "^4.2.3",
     "clean-css-cli": "^4.3.0",
@@ -37,7 +37,6 @@
     "htmlhint": "^0.14.2",
     "lessc": "^1.0.2",
     "standard": "^16.0.3",
-    "uglify-es": "^3.3.9",
-    "uglifyjs": "^2.4.11"
+    "uglify-es": "^3.3.9"
   }
 }

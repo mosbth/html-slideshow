@@ -2,7 +2,7 @@ Mithril HTML Slideshow
 ============================
 
 [![npm version](https://badge.fury.io/js/html-slideshow.svg)](https://badge.fury.io/js/html-slideshow)
-[![Build Status](https://travis-ci.org/mosbth/mithril-slideshow.svg?branch=master)](https://travis-ci.org/mosbth/mithril-slideshow)
+[![Build Status](https://travis-ci.com/mosbth/html-slideshow.svg?branch=master)](https://travis-ci.com/mosbth/html-slideshow)
 
 This enables you to build slideshows using HTML and Markdown in a single HTML page.
 
