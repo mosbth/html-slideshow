@@ -2,6 +2,8 @@ Mithril HTML Slideshow
 ============================
 
 [![npm version](https://badge.fury.io/js/html-slideshow.svg)](https://badge.fury.io/js/html-slideshow)
+[![Join the chat at https://gitter.im/mosbth/html-slideshow](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mosbth/html-slideshow?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status](https://travis-ci.com/mosbth/html-slideshow.svg?branch=master)](https://travis-ci.com/mosbth/html-slideshow)
 
 This enables you to build slideshows using HTML and Markdown in a single HTML page.
