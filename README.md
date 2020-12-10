@@ -6,11 +6,11 @@ Mithril HTML Slideshow
 
 [![Build Status](https://travis-ci.com/mosbth/html-slideshow.svg?branch=master)](https://travis-ci.com/mosbth/html-slideshow)
 
-This enables you to build slideshows using HTML and Markdown in a single HTML page.
+Create slideshows using HTML and Markdown and view them in a single HTML page.
 
-You write all your slides in one html-file. Each slide is written in its own `<script>` tag.
+You write all your slides in one html file. Each slide is written in its own `<script>` tag and you can use html, markdown and show programming code with syntax higlighted.
 
-Here is how a markdown slide can be created.
+Here is how a markdown slide can be created, as part of a web page.
 
 ```
 <script data-role="slide" data-markdown type="text/html">
@@ -23,7 +23,7 @@ Here is how a markdown slide can be created.
 </script>
 ```
 
-When you open the html file in a browser, each `<script>` tag is rendered to be a slide.
+When you open the html file in a browser, each `<script>` tag is rendered to be displayed as a slide.
 
 It can look like this.
 
