@@ -142,7 +142,7 @@ Here is how you can create a slideshow, slide by slide with the different settin
 
 ### The base
 
-The slideshow needs HTML-document and access to the files `html-slideshow.js` and `html-slideshow.css`. A sample start of an slideshow with an empty slide can look like this.
+The slideshow needs a HTML-document and access to the files `html-slideshow.js` and `html-slideshow.css`. A sample start of an slideshow with an empty slide can look like this.
 
 ```html
 <!doctype html>
