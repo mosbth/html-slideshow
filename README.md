@@ -55,15 +55,15 @@ Main features
 Try it out on your own
 ----------------------------
 
-You can download the source to the file [`htdocs/cdn_v1.0.0.html`](htdocs/cdn_v1.0.0.html) and open it locally in your browser.
+You can download the source to the file [`htdocs/cdn_v1.1.0.html`](htdocs/cdn_v1.1.0.html) and open it locally in your browser.
 
 Or you can create your own `slide.html` and put the following code in it.
 
 ```html
 <!doctype html>
 <meta charset="utf-8" />
-<link href="https://dbwebb.se/cdn/css/html-slideshow_v1.0.0.bundle.min.css" rel="stylesheet" />
-<script src="https://dbwebb.se/cdn/js/html-slideshow_v1.0.0.bundle.min.js"></script>
+<link href="https://dbwebb.se/cdn/css/html-slideshow_v1.1.0.bundle.min.css" rel="stylesheet" />
+<script src="https://dbwebb.se/cdn/js/html-slideshow_v1.1.0.bundle.min.js"></script>
 
 <title>html-slides</title>
 
