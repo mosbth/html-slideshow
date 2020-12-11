@@ -94,17 +94,17 @@ Start with these general examples.
 
 | Presentation             | Explained                                     |
 |--------------------------|-----------------------------------------------|
-| [markdown.html](https://mosbth.github.io/mithril-slideshow/htdocs/markdown.html) | Slides created by writing markdown in a html page. |
-| [html.html](https://mosbth.github.io/mithril-slideshow/htdocs/html.html) | Slides created by writing HTML in a html page. |
+| [markdown.html](https://mosbth.github.io/html-slideshow/htdocs/markdown.html) | Slides created by writing markdown in a html page. |
+| [html.html](https://mosbth.github.io/html-slideshow/htdocs/html.html) | Slides created by writing HTML in a html page. |
 
 Here are more specific examples to create customized slides.
 
 | Presentation             | Explained                                     |
 |--------------------------|-----------------------------------------------|
-| [class.html](https://mosbth.github.io/mithril-slideshow/htdocs/class.html) | Using the class attribute to select starting theme and style slides individually. |
-| [code.html](https://mosbth.github.io/mithril-slideshow/htdocs/code.html) | Sample slides displaying code with or without syntax higlightning. |
-| [iframe.html](https://mosbth.github.io/mithril-slideshow/htdocs/iframe.html) | Sample slides displaying how to use iframe in a slide. |
-| [image.html](https://mosbth.github.io/mithril-slideshow/htdocs/image.html) | How to use images in slides. |
+| [class.html](https://mosbth.github.io/html-slideshow/htdocs/class.html) | Using the class attribute to select starting theme and style slides individually. |
+| [code.html](https://mosbth.github.io/html-slideshow/htdocs/code.html) | Sample slides displaying code with or without syntax higlightning. |
+| [iframe.html](https://mosbth.github.io/html-slideshow/htdocs/iframe.html) | Sample slides displaying how to use iframe in a slide. |
+| [image.html](https://mosbth.github.io/html-slideshow/htdocs/image.html) | How to use images in slides. |
 
 <!--
 video
