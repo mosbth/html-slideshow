@@ -1,7 +1,21 @@
 Revision history
 ============================
 
+
+
+v1.1.0 (2020-12-11)
+---------------------------
+
+* Rewrote the build sequence.
+* Added as npm package.
+* Rewrote examples and README.
+* Added a primitive CDN.
+* Created a single bundle of the css and js file.
+
+
+
 v1.0* (2016-03-28)
+---------------------------
 
 * Enable to add class to each slide.
 * Add themes.
@@ -12,7 +26,9 @@ v1.0* (2016-03-28)
 * Add themes and switch theme by number.
 
 
+
 v1.0 (2016-01-29)
+---------------------------
 
 * Added formatting using Markdown.
 * Works in Chrome and Firefox, at least. Fix #4.

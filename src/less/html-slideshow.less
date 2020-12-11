@@ -20,7 +20,7 @@ h3 {
     text-align: left;
     font-weight: 100;
 }
- 
+
 h1,
 h2,
 h3,
@@ -63,8 +63,27 @@ pre {
     max-height: 768px;
 }
 
+table  {
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1px solid white;
+    padding: 0.1em 0.5em;
+}
+
+th {
+    border-bottom: 1px double white;
+}
+
 a {
     color: inherit;
+}
+
+figcaption {
+    font-style: italic;
+    font-size: smaller;
 }
 
 #objects {
@@ -83,25 +102,6 @@ a {
 
 #objects > :last-child {
     margin-bottom: 0;
-}
-
-
-
-/**
- * Default slide style
- */
-.slide-a {
-
-}
-
-.slide-b,
-.center {
-    h1,
-    h2,
-    h3,
-    p {
-        text-align: center;
-    }
 }
 
 
@@ -196,3 +196,60 @@ a {
         }
     }
 }
+
+
+
+/**
+ * Default slide style, applied individually to each slide
+ */
+.slide-a {
+
+}
+
+.center {
+    h1,
+    h2,
+    h3,
+    p,
+    figure {
+        text-align: center;
+    }
+}
+
+
+
+/**
+* Customize your slide style
+ */
+.slide-b {
+    .center()
+}
+
+
+
+/*
+h1 {
+    border-bottom: 2px solid orange;
+}
+
+h1 {
+    border-bottom: 2px solid lime;
+}
+#slide {
+    font-family: monospace;
+    color: lime;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li:before {
+    content: "$ ";
+}
+
+ul li ul li:before {
+    content: "- ";
+}
+
+*/

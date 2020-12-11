@@ -95,11 +95,11 @@ HTML_SOURCES	= $(SRC) $(HTDOCS)
 #HTML_SOURCES	= $(wildcard $(SRC)/*.html $(HTDOCS)/*.html)
 
 # JS lib files to include in bundle
-JS_TARGET			= slideshow-bundle.min.js
+JS_TARGET			= html-slideshow.bundle.min.js
 JS_TARGET_SOURCES 	= $(wildcard $(SRC_JS)/lib/*.js) $(JS_SRC_MIN)
 
 # CSS lib files to include in bundle
-CSS_TARGET			= slideshow-bundle.min.css
+CSS_TARGET			= html-slideshow.bundle.min.css
 CSS_TARGET_SOURCES 	= $(wildcard $(SRC)/css/lib/*.css) $(LESS_MIN_CSS)
 
 
@@ -199,7 +199,7 @@ bundle-js:
 # target: less                    - Compile the LESS stylesheet(s).
 less: prepare less-css less-min-css
 	@$(call HELPTEXT,$@)
-	rsync -a $(BUILD_LESS)/css/slideshow.min.css $(HTDOCS)/css
+	rsync -a $(BUILD_LESS)/css/html-slideshow.min.css $(HTDOCS)/css
 
 less-css: $(LESS_CSS)
 less-min-css: $(LESS_MIN_CSS)
@@ -231,7 +231,7 @@ less-lint: $(LESS_SOURCES)
 # target: js                      - Compile and minify JavaScript.
 js: prepare js-min
 	@$(call HELPTEXT,$@)
-	rsync -a $(BUILD_JS)/slideshow.min.js $(HTDOCS)/js
+	rsync -a $(BUILD_JS)/html-slideshow.min.js $(HTDOCS)/js
 
 # target: js-min                  - Minify JavaScript.
 js-min: $(JS_SRC_MIN)
