@@ -65,6 +65,7 @@ pre {
 
 table  {
     border-collapse: collapse;
+    margin-bottom: 1.5em;
 }
 
 th,
@@ -96,6 +97,11 @@ figcaption {
     -ms-transform: translate(0, -50%);
 }
 
+#objects.full {
+    right: 0; 
+    left: 0;
+}
+ 
 #objects > :first-child {
     margin-top: 0;
 }
@@ -176,9 +182,31 @@ figcaption {
  */
 .theme-4 {
     #slide {
+        background-color: #111111;
+        background-image: none;
+
+        font-family: monospace;
+        color: lime;
+
+        h1 {
+            border-bottom: 2px solid lime;
+            //border-bottom: 2px solid orange;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        li:before {
+            content: "$ ";
+        }
+
+        ul li ul li:before {
+            content: "- ";
+        }
 
         pre {
-
+            background-color: #333;
         }
     }
 }
@@ -188,14 +216,44 @@ figcaption {
 /**
 * Customize your own theme
  */
-.theme-5 {
+.theme-5,
+.theme-6 {
     #slide {
+        /* Remove the side padding and use full width */
+        right: 0;
+        left: 0;
+      
+        background-color: #222;
+        background-image: none;
+
+        font-family: "Verdana";
+
+        h1 {
+            border-bottom: 2px solid lime;
+            //border-bottom: 2px solid orange;
+            margin-bottom: 0.7em;
+        }
 
         pre {
+            background-color: #333;
+        }
 
+        .titlepage {
+            h1 {
+                color: lime;
+                margin-bottom: 1em;
+                border: none;
+                .center();
+            }
         }
     }
 }
+
+.theme-6 #slide {
+  right: 14%;
+  left: 2%;
+} 
+
 
 
 
@@ -227,29 +285,28 @@ figcaption {
 
 
 
-/*
-h1 {
-    border-bottom: 2px solid orange;
+/**
+ * Additions and customizations
+ */
+h1 ~ h2 {
+    margin-bottom: 2em;
 }
 
-h1 {
-    border-bottom: 2px solid lime;
-}
-#slide {
-    font-family: monospace;
-    color: lime;
+li {
+    margin-bottom: 0.5em;
 }
 
-ul {
-    list-style-type: none;
+li ul {
+    margin-top: 0.5em;
 }
 
-li:before {
-    content: "$ ";
+blockquote {
+    border-left: 1px solid #666;
+    padding-left: 0.5em;
 }
 
-ul li ul li:before {
-    content: "- ";
+.footnote {
+    font-size: 0.6em;
+    border-top: 1px solid #999;
+    padding-top: 0.5em;
 }
-
-*/

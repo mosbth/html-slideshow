@@ -94,15 +94,43 @@ app.play = function (controller, reverse) {
 }
 
 /**
- * CHnge theme.
+ * Change theme.
  */
 app.useTheme = function (theme) {
   const element = document.getElementsByTagName('html').item(0)
 
   console.log(element)
 
-  element.classList.remove('theme-1', 'theme-2', 'theme-3', 'theme-4', 'theme-5')
+  element.classList.remove('theme-1', 'theme-2', 'theme-3', 'theme-4', 'theme-5', 'theme-6', 'theme-7', 'theme-8', 'theme-9', 'theme-0')
   element.classList.add('theme-' + theme)
+}
+
+/**
+ * Goto specific slide.
+ */
+app.goto = function () {
+  // navigate to a specific slide
+}
+
+/**
+ * Show help.
+ */
+app.showHelp = function () {
+  // Show help
+}
+
+/**
+ * Display all alises.
+ */
+app.showAll = function () {
+  // Show all slides
+}
+
+/**
+ * Prepare to print.
+ */
+app.print = function () {
+  // Prepare to print the slides
 }
 
 /**
@@ -126,8 +154,18 @@ cp.navigate = function (controller, event) {
     case 38: // ArrowUp
       app.play(controller, true)
       break
+    case 65: // a
+      app.showAll()
+      break
     case 70: // f
       app.enterFullscreen()
+      break
+    case 72: // h
+      app.showHelp()
+      break
+    case 80: // h
+    case 187: // ?
+      app.print()
       break
     case 190: // Period
       app.exitFullscreen()
@@ -138,6 +176,11 @@ cp.navigate = function (controller, event) {
     case 51: // 3 Theme 3
     case 52: // 4 Theme 4
     case 53: // 5 Theme 5
+    case 54: // 6 Theme 6
+    case 55: // 7 Theme 7
+    case 56: // 8 Theme 8
+    case 57: // 9 Theme 9
+    case 58: // 0 Theme 0?
       app.useTheme(event.keyCode - 48)
       break
 

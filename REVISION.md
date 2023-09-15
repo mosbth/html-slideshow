@@ -2,6 +2,19 @@ Revision history
 ============================
 
 
+<!--
+v2.0.0 (2023-xx-xx)
+---------------------------
+
+TODO
+* Add themes and styles
+* Help
+* Navigate to specific slide
+* How to print pdf (searchable)
+* Show overview of slides (searchable)
+
+-->
+
 
 v1.1.0 (2020-12-11)
 ---------------------------
