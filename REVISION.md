@@ -10,9 +10,11 @@ TODO
 * Add themes and styles
 * Help
 * Navigate to specific slide
+    * add current slide to # url
 * How to print pdf (searchable)
 * Show overview of slides (searchable)
-
+* Upgrade to latest mithril?
+* npm update & upgrade
 -->
 
 
