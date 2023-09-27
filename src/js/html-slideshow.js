@@ -131,6 +131,9 @@ app.showAll = function () {
  */
 app.print = function () {
   // Prepare to print the slides
+  m.startComputation()
+  controller.rotateSlide(reverse)
+  m.endComputation()
 }
 
 /**
